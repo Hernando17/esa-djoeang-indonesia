@@ -5,7 +5,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
         <div class="container">
             <a class="navbar-brand" href="{{ route('main.home') }}">Logo here.</a>
-            <button class="btn btn-primary">Log in</button>
+            <a href="{{ route('login') }}" class="btn btn-primary">Log in</a>
         </div>
     </nav>
     <section>
@@ -43,7 +43,8 @@
                         </div>
                         <div class="col-9 col-sm-12 col-md-9">
                             <h5 class="card-title text-black">Rumah Belajar</h5>
-                            <p class="card-text text-secondary">Layanan rumah untuk belajar bersama dan saling berdiskusi.</p>
+                            <p class="card-text text-secondary">Layanan rumah untuk belajar bersama dan saling berdiskusi.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -71,7 +72,8 @@
                 <div class="swiper-slide">
                     <div class="card">
                         <div class="card-body p-2 text-center">
-                            <img src="{{ asset('img/policeman.png') }}" class="rounded-circle" alt="dummy" style="width: 150px; height: 150px;">
+                            <img src="{{ asset('img/policeman.png') }}" class="rounded-circle" alt="dummy"
+                                style="width: 150px; height: 150px;">
                             <h5 class="card-title m-0">Nama</h5>
                             <small class="card-text m-0">Jabatan</small>
                         </div>

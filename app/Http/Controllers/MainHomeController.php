@@ -12,4 +12,13 @@ class MainHomeController extends Controller
             'title' => 'Esa Djoeang Indonesia Foundation'
         ]);
     }
+
+    public function login()
+    {
+        $data = [
+            "title" => "login"
+        ];
+
+        return view('main.login', $data);
+    }
 }
