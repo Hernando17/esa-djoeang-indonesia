@@ -74,7 +74,8 @@
                 <div class="swiper-slide">
                     <div class="card">
                         <div class="card-body p-2 text-center">
-                            <img src="{{ asset('img/policeman.png') }}" class="rounded-circle" alt="dummy" style="width: 150px; height: 150px;">
+                            <img src="{{ asset('img/policeman.png') }}" class="rounded-circle" alt="dummy"
+                                style="width: 150px; height: 150px;">
                             <h5 class="card-title m-0">Nama</h5>
                             <small class="card-text m-0">Jabatan</small>
                         </div>
@@ -97,10 +98,13 @@
                 <div class="modal-body">
                     <form action="{{ route('auth') }}" method="POST">
                         @csrf
-                        <input type="email" name="email" id="email" class="form-control form-control-lg mb-2" placeholder="Email" required>
-                        <input type="password" name="password" id="password" class="form-control form-control-lg mb-3" placeholder="Password" required>
+                        <input type="email" name="email" id="email" class="form-control form-control-lg mb-2"
+                            placeholder="Email" required>
+                        <input type="password" name="password" id="password" class="form-control form-control-lg mb-3"
+                            placeholder="Password" required>
                         <button type="submit" class="btn btn-success w-100">Log in</button>
-                        <small>Belum punya akun? <a role="button" id="register-href" class="text-primary text-decoration-none">Daftar</a></small>
+                        <small>Belum punya akun? <a role="button" id="register-href"
+                                class="text-primary text-decoration-none">Daftar</a></small>
                     </form>
                 </div>
             </div>
@@ -116,20 +120,23 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('auth') }}" method="POST">
+                    <form action="{{ route('register') }}" method="POST">
                         @csrf
                         <input type="text" name="name" id="name" class="form-control mb-2" placeholder="Nama" required>
                         <input type="email" name="email" id="email" class="form-control mb-2" placeholder="Email" required>
                         <div class="row mb-3">
                             <div class="col-md">
-                                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                <input type="password" name="password" id="password" class="form-control"
+                                    placeholder="Password" required>
                             </div>
                             <div class="col-md">
-                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm Password" required>
+                                <input type="password" name="confirm_password" id="confirm_password" class="form-control"
+                                    placeholder="Confirm Password" required>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success w-100">Register</button>
-                        <small>Sudah punya akun? <a role="button" id="login-href" class="text-primary text-decoration-none">Masuk</a></small>
+                        <small>Sudah punya akun? <a role="button" id="login-href"
+                                class="text-primary text-decoration-none">Masuk</a></small>
                     </form>
                 </div>
             </div>

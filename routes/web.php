@@ -18,14 +18,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(MainHomeController::class)->group(function () {
     Route::get('/', 'index')->name('main.home');
-    Route::get('/login', 'login')->name('login');
 });
 
 route::controller(AuthController::class)->group(function () {
     route::post('/auth', 'authenticate')->name('auth');
     route::get('/logout', 'logout')->name('logout');
+    route::post('/register', 'register')->name('register');
 });
 
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
+    Route::get('/admin/user', 'user')->name('admin.user');
 });
