@@ -4,8 +4,10 @@
     <!-- navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('main.home') }}">Logo here.</a>
-            <a href="{{ route('login') }}" class="btn btn-primary">Log in</a>
+            <a class="navbar-brand" href="{{ route('main.home') }}">
+                <img src="{{ asset('img/esajuangindonesia.png') }}" alt="Esa Juang Indonesia" width="100">
+            </a>
+            <a role="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</a>
         </div>
     </nav>
     <section>
@@ -72,8 +74,7 @@
                 <div class="swiper-slide">
                     <div class="card">
                         <div class="card-body p-2 text-center">
-                            <img src="{{ asset('img/policeman.png') }}" class="rounded-circle" alt="dummy"
-                                style="width: 150px; height: 150px;">
+                            <img src="{{ asset('img/policeman.png') }}" class="rounded-circle" alt="dummy" style="width: 150px; height: 150px;">
                             <h5 class="card-title m-0">Nama</h5>
                             <small class="card-text m-0">Jabatan</small>
                         </div>
@@ -84,6 +85,56 @@
             <div class="swiper-pagination"></div>
         </div>
     </section>
+
+    <!-- login modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Log in</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('auth') }}" method="POST">
+                        @csrf
+                        <input type="email" name="email" id="email" class="form-control form-control-lg mb-2" placeholder="Email" required>
+                        <input type="password" name="password" id="password" class="form-control form-control-lg mb-3" placeholder="Password" required>
+                        <button type="submit" class="btn btn-success w-100">Log in</button>
+                        <small>Belum punya akun? <a role="button" id="register-href" class="text-primary text-decoration-none">Daftar</a></small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- register modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('auth') }}" method="POST">
+                        @csrf
+                        <input type="text" name="name" id="name" class="form-control mb-2" placeholder="Nama" required>
+                        <input type="email" name="email" id="email" class="form-control mb-2" placeholder="Email" required>
+                        <div class="row mb-3">
+                            <div class="col-md">
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                            </div>
+                            <div class="col-md">
+                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm Password" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Register</button>
+                        <small>Sudah punya akun? <a role="button" id="login-href" class="text-primary text-decoration-none">Masuk</a></small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @push('script')
         <script type="text/javascript">
@@ -114,6 +165,17 @@
                     dynamicBullets: true,
                 },
             });
+
+            $('#register-href').click(function(e) {
+                e.preventDefault();
+                $('#loginModal').modal('hide');
+                $('#registerModal').modal('show');
+            })
+            $('#login-href').click(function(e) {
+                e.preventDefault();
+                $('#loginModal').modal('show');
+                $('#registerModal').modal('hide');
+            })
         </script>
     @endpush
 @endsection
