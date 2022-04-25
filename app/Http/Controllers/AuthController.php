@@ -51,6 +51,7 @@ class AuthController extends Controller
 
         User::create([
             'is_admin' => 0,
+            'img' => "default.jpg",
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),

@@ -21,4 +21,15 @@ class AdminController extends Controller
             'users' => User::all(),
         ]);
     }
+
+    public function user_update()
+    {
+        // 
+    }
+
+    public function user_delete($id)
+    {
+        User::find($id)->delete();
+        return redirect()->intended('admin/dashboard/user/index');
+    }
 }

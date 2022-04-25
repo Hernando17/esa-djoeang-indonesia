@@ -28,5 +28,6 @@ route::controller(AuthController::class)->group(function () {
 
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
-    Route::get('/admin/user', 'user')->name('admin.user');
+    Route::get('/admin/dashboard/user/index', 'user')->name('admin.user');
+    Route::get('/admin/delete/{id}', 'user_delete')->name('admin.user.delete');
 });
