@@ -30,4 +30,5 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
     Route::get('/admin/dashboard/user/index', 'user')->name('admin.user');
     Route::get('/admin/delete/{id}', 'user_delete')->name('admin.user.delete');
+    route::post('/admin/update/{id}', 'userupdate')->name('admin.user.update');
 });
