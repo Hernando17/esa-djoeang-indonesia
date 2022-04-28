@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// route masih mentahan
+Route::get('/login', [AdminController::class, 'login'])->name('admin.login'); //ini halaman login buat admin
+//
+
 Route::controller(MainHomeController::class)->group(function () {
     Route::get('/', 'index')->name('main.home');
 });

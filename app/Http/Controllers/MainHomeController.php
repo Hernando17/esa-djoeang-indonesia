@@ -9,7 +9,7 @@ class MainHomeController extends Controller
     public function index()
     {
         return view('main.home.index', [
-            'title' => 'Esa Djoeang Indonesia Foundation'
+            'title' => 'Esa Juang Indonesia Foundation'
         ]);
     }
 

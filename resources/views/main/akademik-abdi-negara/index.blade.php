@@ -24,6 +24,25 @@
     </section>
     <section class="container py-3">
         <h4 class="text-center">Jadwal Pelatihan AAN</h4>
+        <div class="row">
+            <?php for ($i = 0; $i < 7; $i++) { ?>
+            <div class="col-3">
+                <div class="card my-2">
+                    <div class="card-body">
+                        <h5 class="text-center">Senin</h5>
+                        <ol>
+                            <li>Contoh</li>
+                            <li>Contoh 2</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+    </section>
+    <section class="py-5 bg-light text-center">
+        <h4 class="">Daftar Lokasi Pelatihan AAN</h4>
+        <a href="#" class="btn btn-primary">Cek Lokasi</a>
     </section>
     <div class="container">
         <footer class="row row-cols-5 py-5 my-5 border-top">

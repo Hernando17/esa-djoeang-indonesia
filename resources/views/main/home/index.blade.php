@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </a>
-            <a href="#" class="card text-decoration-none">
+            <a href="{{ route('main.rumah-belajar') }}" class="card text-decoration-none">
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-3 col-sm-12 col-md-3">
@@ -101,6 +101,7 @@
             <div class="swiper-pagination"></div>
         </div>
     </section>
+
     <div class="container">
         <footer class="row row-cols-5 py-5 my-5 border-top">
             <div class="col">

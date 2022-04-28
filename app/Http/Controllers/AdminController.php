@@ -10,6 +10,13 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
+    public function login()
+    {
+        return view('admin.auth.login', [
+            'title' => 'Login'
+        ]);
+    }
+
     public function dashboard()
     {
         return view('admin.dashboard.index', [
