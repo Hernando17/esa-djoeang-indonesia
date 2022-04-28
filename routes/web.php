@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MainHomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MainAkademikAbdiNegaraController;
+use App\Http\Controllers\MainRumahBelajarController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +20,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(MainHomeController::class)->group(function () {
     Route::get('/', 'index')->name('main.home');
+});
+
+Route::controller(MainAkademikAbdiNegaraController::class)->group(function () {
+    Route::get('/akademik-abdi-negara', 'index')->name('main.akademik-abdi-negara');
+});
+
+Route::controller(MainRumahBelajarController::class)->group(function () {
+    Route::get('/rumah-belajar', 'index')->name('main.rumah-belajar');
 });
 
 route::controller(AuthController::class)->group(function () {
