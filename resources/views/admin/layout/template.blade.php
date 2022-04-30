@@ -17,6 +17,8 @@
         rel="stylesheet">
     <!-- css -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -42,7 +44,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dasbor</span></a>
             </li>
 
             <!-- Divider -->
@@ -50,13 +52,13 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                Basis Data
             </div>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.user') }}">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>User</span></a>
+                    <span>Pengguna</span></a>
             </li>
 
             <!-- Divider -->
@@ -179,7 +181,11 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Your Website
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                        </span>
                     </div>
                 </div>
             </footer>
@@ -216,8 +222,11 @@
         </div>
     </div>
 
-    <!-- js-->
-    <script src="{{ asset('js/admin.js') }}"></script>
 </body>
+
+<!-- js-->
+<script src="{{ asset('js/admin.js') }}"></script>
+<script src="{{ asset('js/datatables.min.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 </html>

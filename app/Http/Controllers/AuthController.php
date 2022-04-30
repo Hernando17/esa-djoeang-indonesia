@@ -35,7 +35,7 @@ class AuthController extends Controller
         return redirect('/');
     }
 
-    public function register(Request $request)
+    public function register_act(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -44,14 +44,34 @@ class AuthController extends Controller
             'confirm_password' => ['required', 'string', 'min:8'],
         ]);
 
-        User::create([
+        $data = [
             'is_admin' => 0,
             'img' => "profile/default.jpg",
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-        ]);
+        ];
 
+        if (!empty($request->is_admin)) {
+            if ($request->is_admin == true) {
+                $data['is_admin'] = 1;
+            } else {
+                $data['is_admin'] = 0;
+            }
+        }
+
+        User::create($data);
+    }
+
+    public function user_add(Request $request)
+    {
+        $this->register_act($request);
+        return redirect()->intended('admin/dashboard/user');
+    }
+
+    public function register(Request $request)
+    {
+        $this->register_act($request);
         return redirect()->intended('/');
     }
 }

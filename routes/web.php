@@ -37,12 +37,17 @@ Route::controller(MainRumahBelajarController::class)->group(function () {
 route::controller(AuthController::class)->group(function () {
     route::post('/auth', 'authenticate')->name('auth');
     route::get('/logout', 'logout')->name('logout');
-    route::post('/register', 'register')->name('register');
+    Route::post('/register', 'register')->name('register');
 });
 
-Route::controller(AdminController::class)->group(function () {
-    Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
-    Route::get('/admin/dashboard/user/index', 'user')->name('admin.user');
-    Route::get('/admin/delete/{id}', 'user_delete')->name('admin.user.delete');
-    route::post('/admin/update/{id}', 'userupdate')->name('admin.user.update');
+Route::middleware(['author'])->group(function () {
+    Route::post('/admin/dashboard/useradd', [AuthController::class, 'user_add'])->name('admin.useradd');
+
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
+        Route::get('/admin/dashboard/user', 'user')->name('admin.user');
+        Route::get('/admin/delete/{id}', 'user_delete')->name('admin.user.delete');
+        route::post('/admin/update/{id}', 'user_update')->name('admin.user.update');
+        route::post('/admin/resetpassword/{id}', 'user_resetpassword')->name('admin.user.resetpassword');
+    });
 });

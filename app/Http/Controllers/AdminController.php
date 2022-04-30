@@ -10,18 +10,9 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
-    public function login()
-    {
-        return view('admin.auth.login', [
-            'title' => 'Login'
-        ]);
-    }
-
     public function dashboard()
     {
-        return view('admin.dashboard.index', [
-            'title' => 'Dashboard Admin',
-        ]);
+        return view('admin.dashboard.index');
     }
 
     public function user()
@@ -32,30 +23,13 @@ class AdminController extends Controller
         ]);
     }
 
-    public function user_update(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'is_admin' => 'required|boolean'
-        ]);
-
-        $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'is_admin' => $request->is_admin,
-        ];
-
-        User::find($id)->update($data);
-    }
-
     public function user_delete($id)
     {
         User::find($id)->delete();
-        return redirect()->intended('admin/dashboard/user/index');
+        return redirect()->intended('admin/dashboard/user');
     }
 
-    public function userupdate(Request $request, $id)
+    public function user_update(Request $request, $id)
     {
         // request
         $request->validate([
@@ -90,6 +64,20 @@ class AdminController extends Controller
 
         User::find($id)->update($data);
 
-        return redirect()->intended('admin/dashboard/user/index');
+        return redirect()->intended('admin/dashboard/user');
+    }
+
+    public function user_resetpassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|string|min:6|same:password_confirm',
+            'password_confirm' => 'required|string|min:6',
+        ]);
+
+        $user = User::find($request->id);
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        return redirect()->intended('admin/dashboard/index');
     }
 }
