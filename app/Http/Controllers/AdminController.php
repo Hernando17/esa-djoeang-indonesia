@@ -19,9 +19,13 @@ class AdminController extends Controller
         return view('admin.dashboard.index', compact('data'));
     }
 
-    protected function admin_profile()
+    public function admin_profile($id)
     {
-        return view('admin.dashboard.profile');
+        $data = [
+            'profile' => user::find($id),
+        ];
+
+        return view('admin.dashboard.profile', compact('data'));
     }
 
     public function user()
@@ -40,6 +44,10 @@ class AdminController extends Controller
 
     public function user_update(Request $request, $id)
     {
+        // dump session name
+        dd($request->session()->get('name'));
+
+
         // request
         $request->validate([
             'name' => 'required|string|max:255',
@@ -54,6 +62,8 @@ class AdminController extends Controller
             'email' => $request->email,
             'is_admin' => $request->is_admin,
         ];
+
+
 
         // Update
         if ($request->file('img') != null) {

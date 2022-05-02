@@ -1,6 +1,6 @@
 @extends('admin.layout.template')
 @section('title', 'Profile Anda')
-@section('header', 'Profile Anda')
+@section('header', 'Identitas Anda')
 @section('content')
 
     <div class="card">
@@ -26,7 +26,8 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="#" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('admin.user.update', Auth::User()->id) }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         <div class="modal-body">
                                             <label for="name">Nama</label>
@@ -43,7 +44,6 @@
                                                     file...</label>
                                             </div>
                                             <br>
-                                            <label for="is_admin">Level</label>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
@@ -54,21 +54,37 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="col">
                         <img src="{{ asset('storage') }}/{{ Auth::User()->img }}" width="200px"
                             class="float-right mr-5">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <a href="{{ route('admin.dashboard') }}" class="btn btn-primary btn-sm">Kembali</a>
-                    </div>
-                </div>
             </div>
-
         </div>
     </div>
+
+    <br>
+    <h1 class="h3 mb-4 text-gray-800">Ubah Kata Sandi</h1>
+    <div class="card mt-2">
+        <div class="container">
+            <div class="card-body">
+                <form action="#" method="POST">
+                    <div class="row">
+                        <div class="col">
+                            <label for="password">Kata Sandi</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                        <div class="col">
+                            <label for="password_confirm">Ulangi Kata Sandi</label>
+                            <input type="password" class="form-control" name="password_confirm">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm float-right mt-3 mb-3">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="" style="padding:50px;"></div>
 
 @endsection
