@@ -49,5 +49,6 @@ Route::middleware(['author'])->group(function () {
         Route::get('/admin/delete/{id}', 'user_delete')->name('admin.user.delete');
         route::post('/admin/update/{id}', 'user_update')->name('admin.user.update');
         route::post('/admin/resetpassword/{id}', 'user_resetpassword')->name('admin.user.resetpassword');
+        route::get('/admin/profile', 'admin_profile')->name('admin.profile');
     });
 });

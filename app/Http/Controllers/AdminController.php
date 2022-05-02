@@ -12,7 +12,16 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard.index');
+        $data = [
+            'count_users' => User::count(),
+        ];
+
+        return view('admin.dashboard.index', compact('data'));
+    }
+
+    protected function admin_profile()
+    {
+        return view('admin.dashboard.profile');
     }
 
     public function user()

@@ -8,7 +8,8 @@
 
             <div class="row">
                 <div class="col">
-                    <button type="button" class="btn btn-success float-right mb-3" data-toggle="modal" data-target="#edit">
+                    <button type="button" class="btn btn-success btn-sm float-right mb-3" data-toggle="modal"
+                        data-target="#edit">
                         Tambah
                     </button>
 
@@ -92,7 +93,7 @@
                                     <td class="align-middle">{{ $user->email }}</td>
                                     <td class="align-middle">
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                             data-target="#edit{{ $user->id }}">
                                             Ubah
                                         </button>
@@ -152,7 +153,7 @@
                                         </div>
 
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
                                             data-target="#ubahpassword{{ $user->id }}">
                                             Ubah Kata Sandi
                                         </button>
@@ -194,7 +195,7 @@
 
 
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                             data-target="#delete{{ $user->id }}">
                                             Hapus
                                         </button>
