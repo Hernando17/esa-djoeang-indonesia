@@ -9,17 +9,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Models\User;
 
-class AdminController extends Controller
+class AdminUserController extends Controller
 {
-    public function dashboard()
-    {
-        $data = [
-            'count_users' => User::count(),
-        ];
-
-        return view('admin.dashboard.index', compact('data'));
-    }
-
     public function user()
     {
         return view('admin.dashboard.user.index', [
@@ -92,7 +83,7 @@ class AdminController extends Controller
     public function profile_update(Request $request, $id)
     {
         $this->user_update_parent($request, $id);
-        return redirect()->intended('admin/profile/' . $id);
+        return redirect()->intended('admin/profile/' . auth()->user()->id);
     }
 
     public function user_resetpassword(Request $request)
@@ -106,6 +97,6 @@ class AdminController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return redirect()->intended('admin/dashboard/index');
+        return redirect()->route('admin.user');
     }
 }

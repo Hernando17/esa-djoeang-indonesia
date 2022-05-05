@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\MainHomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainAkademikAbdiNegaraController;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // route masih mentahan
-Route::get('/login', [AdminController::class, 'login'])->name('admin.login'); //ini halaman login buat admin
+Route::get('/login', [DashboardController::class, 'login'])->name('admin.login'); //ini halaman login buat admin
 //
 
 Route::controller(MainHomeController::class)->group(function () {
@@ -43,9 +44,11 @@ route::controller(AuthController::class)->group(function () {
 Route::middleware(['author'])->group(function () {
     Route::post('/admin/dashboard/useradd', [AuthController::class, 'user_add'])->name('admin.useradd');
 
-    Route::controller(AdminController::class)->group(function () {
+    Route::controller(AdminDashboardController::class)->group(function () {
         // Dashboard
         Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
+    });
+    Route::controller(AdminUserController::class)->group(function () {
         // User
         Route::get('/admin/dashboard/user', 'user')->name('admin.user');
         Route::post('/admin/user/update/{id}', 'user_update')->name('admin.user.update');

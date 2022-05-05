@@ -1,12 +1,3 @@
-{{-- @php
-
-if (Auth::user()->id != $user->id) {
-    return redirect()->route('admin.dashboard');
-}
-
-@endphp --}}
-
-
 @extends('admin.layout.template')
 @section('title', 'Profile Anda')
 @section('header', 'Identitas Anda')
@@ -78,7 +69,8 @@ if (Auth::user()->id != $user->id) {
     <div class="card mt-2">
         <div class="container">
             <div class="card-body">
-                <form action="#" method="POST">
+                <form action="{{ route('admin.user.resetpassword', Auth::User()->id) }}" method="POST">
+                    @csrf
                     <div class="row">
                         <div class="col">
                             <label for="password">Kata Sandi</label>
@@ -89,7 +81,33 @@ if (Auth::user()->id != $user->id) {
                             <input type="password" class="form-control" name="password_confirm">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-sm float-right mt-3 mb-3">Simpan</button>
+                    <button type="button" class="btn btn-primary btn-sm float-right mt-3 mb-3" data-toggle="modal"
+                        data-target="#resetpassword{{ Auth::User()->id }}">
+                        Selesai
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="resetpassword{{ Auth::User()->id }}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Ubah Kata Sandi</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><b>Apakah anda yakin?</b></p>
+                                    <li>Ingin mengubah kata sandi</li>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-primary">Konfirmasi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
