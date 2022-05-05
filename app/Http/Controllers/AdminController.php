@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Route;
 
 use App\Models\User;
 
@@ -17,15 +18,6 @@ class AdminController extends Controller
         ];
 
         return view('admin.dashboard.index', compact('data'));
-    }
-
-    public function admin_profile($id)
-    {
-        $data = [
-            'profile' => user::find($id),
-        ];
-
-        return view('admin.dashboard.profile', compact('data'));
     }
 
     public function user()
@@ -42,18 +34,14 @@ class AdminController extends Controller
         return redirect()->intended('admin/dashboard/user');
     }
 
-    public function user_update(Request $request, $id)
+    public function user_update_parent(Request $request, $id)
     {
-        // dump session name
-        dd($request->session()->get('name'));
-
-
         // request
         $request->validate([
             'name' => 'required|string|max:255',
             'img' => 'image|file',
             'email' => 'required|string|email|max:255',
-            'is_admin' => 'required|boolean'
+            'is_admin' => 'boolean'
         ]);
 
         $data = [
@@ -63,7 +51,9 @@ class AdminController extends Controller
             'is_admin' => $request->is_admin,
         ];
 
-
+        if ($request->is_admin == null) {
+            $data['is_admin'] = true;
+        }
 
         // Update
         if ($request->file('img') != null) {
@@ -82,8 +72,27 @@ class AdminController extends Controller
         }
 
         User::find($id)->update($data);
+    }
 
+    public function user_update(Request $request, $id)
+    {
+        $this->user_update_parent($request, $id);
         return redirect()->intended('admin/dashboard/user');
+    }
+
+    public function admin_profile(User $id)
+    {
+        if (auth()->user()->id != $id->id) {
+            return redirect()->route('admin.profile', auth()->user()->id);
+        }
+
+        return view('admin.dashboard.profile', ['user' => $id]);
+    }
+
+    public function profile_update(Request $request, $id)
+    {
+        $this->user_update_parent($request, $id);
+        return redirect()->intended('admin/profile/' . $id);
     }
 
     public function user_resetpassword(Request $request)

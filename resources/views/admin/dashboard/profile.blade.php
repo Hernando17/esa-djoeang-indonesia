@@ -1,3 +1,12 @@
+{{-- @php
+
+if (Auth::user()->id != $user->id) {
+    return redirect()->route('admin.dashboard');
+}
+
+@endphp --}}
+
+
 @extends('admin.layout.template')
 @section('title', 'Profile Anda')
 @section('header', 'Identitas Anda')
@@ -8,8 +17,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col mt-3">
-                        <p>Nama : {{ Auth::User()->name }}</p>
-                        <p>Email : {{ Auth::User()->email }}</p>
+                        <p>Nama : {{ $user->name }}</p>
+                        <p>Email : {{ $user->email }}</p>
                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#edit">
                             Ubah
                         </button>
@@ -26,16 +35,16 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="{{ route('admin.user.update', Auth::User()->id) }}" method="POST"
+                                    <form action="{{ route('admin.profile.update', Auth::User()->id) }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="modal-body">
                                             <label for="name">Nama</label>
                                             <input type="text" name="name" class="form-control mb-1" placeholder="Nama"
-                                                value="" required>
+                                                value="{{ $user->name }}" required>
                                             <label for="email">Email</label>
                                             <input type="text" name="email" class="form-control mb-1" placeholder="Email"
-                                                value="">
+                                                value="{{ $user->email }}">
                                             <label for="image">Foto Profile</label>
                                             <div class="custom-file mb-3  col-10">
                                                 <input type="file" class="custom-file-input" id="validatedCustomFile"
